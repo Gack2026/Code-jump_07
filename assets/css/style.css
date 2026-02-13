@@ -1,0 +1,510 @@
+@charset "utf-8";
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box; /* width: 100% にpadding・margin・線などを含める、という設定 */
+    caret-color: transparent; /* 縦棒（キャレット）の非表示 */
+}
+
+/* ページ内のすべての要素（html, body 含む）に適用 */
+* {
+    /* Chrome, Safari, Edge, Opera, スマホブラウザ用 */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Firefox 用 */
+    scrollbar-width: none;
+
+    /* Internet Explorer, 旧Edge 用 */
+    -ms-overflow-style: none;
+}
+
+/* ページ全体のスクロール挙動を設定 */
+html {
+    /* ページ内リンクをクリックした際にゆっくり動かす */
+    scroll-behavior: smooth;
+}
+/* //Base style */
+body {
+    /* background-color: #77f; */
+    width: 100%;
+    max-width: 1280px;
+    color: #333;
+    font-family: 'メイリオ', 'arial', sans-serif;
+    margin: 0 auto;
+
+    /* macOS / iOS Safari 用：文字を滑らかに */
+    -webkit-font-smoothing: antialiased;
+    /* Firefox 用：同様の効果 */
+    -moz-osx-font-smoothing: grayscale;
+    /* font-size: 16px; */
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+}
+.dummy {
+    height: 103px;
+    height: 52px;
+}
+img {
+    width: 100%;
+    /* vertical-align: middle; */
+}
+.container {
+    width: min(calc(100vw - 60px), 840px);
+    margin: 0 auto;
+}
+.inner {
+    /* max-width: 600px; */
+    margin: 0 auto;
+}
+.section-title {
+    width: 100%;
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+.section-title a {
+    text-decoration: none;
+}
+a,
+label {
+    cursor: pointer;
+    /* transition: all 0.3s; */
+}
+.wrapper {
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: min(calc(100vw - 60px), 840px);
+    }
+}
+@media screen and (max-width: 375px) {
+    .container {
+        width: min(calc(100vw - 40px), 840px);
+    }
+}
+/* //Base style */
+
+/* header */
+#header {
+    /* background-color: #f00; */
+    width: 100%;
+    height: 270px;
+    width: min(calc(100vw - 60px), 840px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+.site-title {
+    line-height: 1px;
+}
+.site-title a {
+    display: block;
+}
+#header ul {
+    display: flex;
+}
+#header li {
+    font-size: 0.875rem;
+    margin-left: 30px;
+}
+#header li img {
+    width: 20px;
+}
+#header a {
+    text-decoration: none;
+}
+#header a:hover {
+    color: #0dc0c0;
+    transition: color 0.3s;
+}
+@media screen and (max-width: 540px) {
+    #header {
+        height: auto;
+        flex-direction: column;
+        justify-content: start;
+        margin-top: 20px;
+        mb0
+    }
+    #header ul {
+        margin-top: 5px;
+        margin-bottom: 15px;
+    }
+    #header li {
+        font-size: 0.625rem;
+        margin-left: 20px;
+    }
+    #header li:first-child {
+        margin-left: 0;
+    }
+    #header li img {
+        width: 15px;
+    }
+}
+
+/* //header */
+
+.mainvisual {
+}
+
+/* about */
+#about ul,
+#about p {
+    width: 60%;
+    margin: 0 auto;
+    text-align: justify;
+}
+#about li:first-child,
+#about li:last-child {
+    margin-bottom: 30px;
+}
+@media screen and (max-width: 480px) {
+    #about ul,
+    #about p {
+        width: 100%;
+        margin: 0 0;
+    }
+}
+
+/* //about */
+
+/* works */
+#works {
+}
+
+#works .flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+#works img {
+}
+@media screen and (min-width: 769px) {
+    #works .flex {
+        --i: 3; /* 1行内の最大画像個数 */
+        --j: calc(var(--i) - 1); /* 1行内のgap数 */
+        --section-width: min(calc(100vw - 60px), 840px); /* 親要素の幅 */
+        --temp1-gap: min(24px, calc(var(--section-width) / (var(--i) * 1) * 0.0909090909090909)); /* 大まかなgapの算出 */
+        --image-width: round(up, calc((var(--section-width) - var(--temp1-gap) * max(1, var(--j))) / (var(--i) * 1)), 1px); /* 画像サイズを整数に切り上げ */
+        --dynamic-gap: calc((var(--section-width) - var(--image-width) * var(--i)) / (max(1, var(--j) * 1))); /* 最終のgapサイズ = 親要素 - 画像サイズ × 1行の画像個数 ÷ gapの個数 */
+        gap: min(var(--dynamic-gap), 24px);
+    }
+    #works img {
+        width: var(--image-width);
+    }
+}
+@media screen and (min-width: 376px) and (max-width: 768px) {
+    #works .flex {
+        --i: 2; /* 1行内の最大画像個数 */
+        --j: calc(var(--i) - 1); /* 1行内のgap数 */
+        --section-width: min(calc(100vw - 60px), 840px); /* 親要素の幅 */
+        --temp1-gap: min(24px, calc(var(--section-width) / (var(--i) * 1) * 0.0909090909090909)); /* 大まかなgapの算出 */
+        --image-width: round(up, calc((var(--section-width) - var(--temp1-gap) * max(1, var(--j))) / (var(--i) * 1)), 1px); /* 画像サイズを整数に切り上げ */
+        --dynamic-gap: calc((var(--section-width) - var(--image-width) * var(--i)) / (max(1, var(--j) * 1))); /* 最終のgapサイズ = 親要素 - 画像サイズ × 1行の画像個数 ÷ gapの個数 */
+        gap: min(var(--dynamic-gap), 24px);
+    }
+    #works img {
+        width: var(--image-width);
+    }
+}
+@media screen and (max-width: 375px) {
+    #works .flex {
+        --i: 1; /* 1行内の最大画像個数 */
+        --section-width: calc(100vw - 40px); /* 親要素の幅 */
+        --image-width: round(up, var(--section-width), 1px); /* 画像サイズを整数に切り上げ */
+        gap: 20px;
+    }
+    #works img {
+        width: var(--image-width);
+    }
+}
+/* //works */
+
+/* news */
+#news dl {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid #c8c8c8;
+    --news-dt: 20%;
+    --news-dd: calc(100% - var(--news-dt));
+    --news-dt-width: max(125px, var(--news-dt));
+    --news-dd-width: calc(100% - var(--news-dt-width));
+}
+#news dt {
+    /* background-color: #88f; */
+    width: var(--news-dt-width);
+    min-width: 125px;
+    border-bottom: 1px solid #c8c8c8;
+    padding: 15px;
+}
+#news dd {
+    /* background-color: #f88; */
+    width: var(--news-dd-width);
+    max-width: var(--news-dd);
+    border-bottom: 1px solid #c8c8c8;
+    text-align: justify;
+    padding: 15px;
+}
+@media screen and (max-width: 375px) {
+    #news dt {
+        width: 100%;
+        max-width: none;
+        border-bottom: 0;
+        padding-bottom: 0;
+    }
+    #news dd {
+        width: 100%;
+        max-width: none;
+        padding-top: 0;
+    }
+}
+
+/* contact */
+#contact {
+    text-align: center;
+}
+#contact dl {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+
+    --news-dt: 15%;
+    --news-dd: calc(100% - var(--news-dt));
+    --news-dt-width: max(101px, var(--news-dt));
+    --news-dd-width: calc(100% - var(--news-dt-width));
+}
+#contact dt {
+    /* background-color: #88f; */
+    width: var(--news-dt-width);
+    min-width: 101px;
+    line-height: 1;
+    text-align: left;
+    padding: 10px 10px 10px 15px;
+    margin: 0;
+}
+#contact dd {
+    background-color: #f88;
+    width: var(--news-dd-width);
+    max-width: var(--news-dd);
+    margin: 0 0 10px 0;
+}
+#contact dd:last-child {
+    height: 160px;
+    margin: 0;
+}
+#contact input {
+    border: 1px solid #c8c8c8;
+    border-radius: 5px;
+    width: 100%;
+    padding: 10px;
+}
+#contact textarea {
+    border: 1px solid #c8c8c8;
+    border-radius: 5px;
+    width: 100%;
+    height: 160px;
+    padding: 10px;
+}
+#contact button {
+    width: 200px;
+    height: 53px;
+    background-color: #24292e;
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+#contact button:hover {
+    opacity: 0.8;
+    transition: 0.3s;
+}
+@media screen and (max-width: 375px) {
+    #contact dt {
+        width: 100%;
+        max-width: none;
+        padding-left: 0;
+        padding-bottom: 3px;
+    }
+    #contact dd {
+        width: 100%;
+        max-width: none;
+    }
+}
+/* footer */
+#footer {
+    display: flex;
+    background-color: #24292e;
+    color: #fff;
+    width: 100%;
+    height: 35px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 130px;
+}
+#footer P {
+    font-size: 0.625rem;
+    line-height: 1;
+}
+
+/* footer */
+
+/* 左上に画面サイズを表示 */
+@property --_w {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 100vw;
+}
+@property --_h {
+    /* 高さも同様に取得できますが、ここでは幅に絞ります */
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 100vh;
+}
+:root {
+    /* 100vwをpx値に変換 */
+    --w: tan(atan2(var(--_w), 1px));
+    /* --h: tan(atan2(var(--_h), 1px)); */ /* 高さが必要な場合 */
+}
+body::before {
+    /* contentに計算結果を表示 */
+    content: '現在の幅：' counter(w) 'px'; /* */
+    counter-reset: w var(--w); /* 計算した値をカウンターにセット */
+    white-space: pre; /* 必要に応じて空白を保持 */
+    font-size: 20px;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: white;
+    padding: 5px;
+    border: 1px solid black;
+    z-index: 9999;
+}
+/* //左上に画面サイズを表示 */
+
+/* //news */
+
+/*
+<section id="news" class="wrapper">
+    <h2 class="section-title"><a href="#header">News</a></h2>
+    <dl>
+        <dt>2020.XX.XX</dt>
+        <dd>デザイン雑誌「ＸＸＸＸＸＸ Vol.11』に掲載していただきました。</dd>
+        <dt>2020.XX.XX</dt>
+        <dd>ＸＸ月ＸＸ日から写真集「ＸＸＸＸＸＸＸ」の販売を開始します。</dd>
+        <dt>2019.XX.XX</dt>
+        <dd>【イベント開催のお知らせ】テキストテキストテキストテキストテキストテキストテキスト</dd>
+        <dt>2019.XX.XX</dt>
+        <dd>デザイン雑誌「ＸＸＸＸＸＸ Vol.10』に掲載していただきました。</dd>
+        <dt>2019.XX.XX</dt>
+        <dd>【個展開催のお知らせ】テキストテキストテキストテキストテキストテキストテキスト</dd>
+    </dl>
+</section>
+*/
+
+/* index */
+
+/* footer */
+#footer {
+    /* background-color: #f00; */
+    /* padding: 15px 0; */
+}
+/* //footer */
+
+@media screen and (max-width: 768px) {
+}
+
+/*
+last-child と last-of-type の違いは？
+
+html
+<div>
+  <p>1番目</p>
+  <p>2番目</p>
+  <span>最後はスパン</span>
+</div>
+
+css
+p:last-child { color: red; }  ⚠️反映されません
+理由: 最後の要素は <span> であり、<p> ではないからです。
+
+:last-child （最後の子要素）
+親要素の中にある一番最後の要素が、指定した条件と一致する場合のみ適用されます。
+
+
+css
+p:last-of-type { color: red; } ✅「2番目」が赤くなります
+理由: <span> が最後にいても関係なく、<p> の中で最後にあるものを探してくれるからです。
+
+:last-of-type （その種類の中での最後）
+親要素の中で、そのタグ（要素型）の中で一番最後にあるものに適用されます
+
+
+
+
+display: flex; と flex-wrap: wrap; の組み合わせは、
+「要素を横に並べつつ、入り切らなくなったら自動で改行させる」ための鉄板設定です。
+
+css
+.container {
+ display:   flex;    横並びにする
+ flex-wrap: wrap;    折り返しを許可する
+ gap:       10px;    アイテム同士の隙間
+}
+
+リストの先頭の記号や番号の領域を設定
+デフォルトでは領域の「外側」だが、「内側」に入れることで、テキストと一緒に中央へ移動さる。
+list-style: decimal;
+list-style-position: inside;
+
+「margin: auto」について
+ブラウザに「余ったスペースを自動で計算して割り振ってね」と丸投げする便利な命令
+
+「pagging: auto」について
+結論から言うと、padding に auto は使えません。
+MDNのpadding解説にある通り、padding の値は数値（pxや%など）である必要があり、
+auto を指定しても 0 として扱われるか、無視されます。
+
+なぜ margin だけ auto が効くのか？
+margin
+要素の「外側」の空き地をどう使うか決めるもの。空き地があれば自動計算（auto）が可能です。
+padding
+要素の「内側」を広げるもの。どれだけ広げるかは中身次第ではなく、
+指定がない限り勝手に広がることはないため、自動計算という概念がありません。
+
+
+「img」について
+「width: 100%」
+親要素の大きさに対して100%となる。
+親要素に合わせて拡大も縮小もする。
+親要素の大きさによって画像サイズより大きくもなる。
+縦横比を保つために「height: auto;」をセットで使うのが基本となる。
+
+「max-width: 100%」
+親要素に合わせて拡大も縮小もする。
+画像サイズより大きくはならないが親要素、または、同要素で「width: 100%」が設定されていると無視される
+解決策として1つ上の行に「width: auto;」を挿入。
+
+画像をはみ出させる場合
+「object-fit」を使用
+基準点を指定することもできる
+
+基準点を指定（横 縦）※数値の場合は「横 縦」の順番となる
+  object-position: center center; 真ん中を基準（デフォルト）
+  object-position: top left;      左上を基準（left topでも動くようだ。書き方が紛らわしい#）
+  object-position: 50% 20%;       上から20%の位置を基準（人物の顔などに便利）
+
+*/
