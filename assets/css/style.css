@@ -330,6 +330,9 @@ label {
     max-width: var(--news-dd);
     margin: 0 0 10px 0;
 }
+input, textarea {
+    caret-color: auto;
+}
 #contact dd:last-child {
     height: 160px;
     margin: 0;
