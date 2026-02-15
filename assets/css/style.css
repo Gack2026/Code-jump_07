@@ -261,7 +261,7 @@ label {
     display: flex;
     flex-wrap: wrap;
     border-top: 1px solid #c8c8c8;
-    --news-dt: 20%;
+    --news-dt: 16%;
     --news-dd: calc(100% - var(--news-dt));
     --news-dt-width: max(125px, var(--news-dt));
     --news-dd-width: calc(100% - var(--news-dt-width));
