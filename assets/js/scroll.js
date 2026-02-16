@@ -35,7 +35,7 @@ $(document).ready(function () {
             {
                 scrollTop: 0,
             },
-            100,
+            0,
             function () {
                 // スクロール完了（200ms後）にホバー固定を解除
                 $this.removeClass('is-active'); //（スクロール完了時に削除）
