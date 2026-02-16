@@ -58,7 +58,7 @@ function updateWidthDisplay100() {
 updateWidthDisplay100();
 
 window.addEventListener('resize', updateWidthDisplay);
-window.addEventListener('resize', updateWidthDisplay2);
+// window.addEventListener('resize', updateWidthDisplay2);
 window.addEventListener('resize', updateWidthDisplay100);
 
 

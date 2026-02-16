@@ -77,8 +77,13 @@ img {
 .section-title a {
     text-decoration: none;
 }
+.section-title a:hover {
+    color: #0dc0c0;
+    transition: 0.3s;
+}
 a,
 label {
+    color: #333;
     cursor: pointer;
     /* transition: all 0.3s; */
 }
@@ -91,10 +96,10 @@ label {
     }
 }
 @media screen and (max-width: 540px) {
-.section-title {
-    margin-top: 20px;
-    margin-bottom: 30px;
-}
+    .section-title {
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
 }
 @media screen and (max-width: 375px) {
     .container {
@@ -128,11 +133,24 @@ label {
     font-size: 0.875rem;
     margin-left: 30px;
 }
+#header li .about,
+#header li .works,
+#header li .news,
+#header li .contact {
+    color: #0dc0c0;
+}
+ul:has(li a[href*='about']:hover) li a.news,
+ul:has(li a[href*='works']:hover) li a.news,
+/* ul:has(li a[href*="news"]:hover) li a.news, */
+ul:has(li a[href*='contact']:hover) li a.news {
+    color: #333 !important; /* 変えたい色を指定 */
+    transition: color 0.3s;
+}
+
 #header li img {
     width: 20px;
 }
 #header a {
-    color: #000;
     text-decoration: none;
 }
 #header a:hover {
@@ -168,8 +186,6 @@ label {
 }
 /* //header */
 
-
-
 /* works */
 #news {
     /* width: 100%; */
@@ -177,34 +193,29 @@ label {
     margin: auto;
 }
 .news {
-text-align: center;
+    text-align: center;
 }
-.news-title{
+.news-title {
     text-align-last: left;
     line-height: 1;
     margin-top: 25px;
     margin-bottom: 15px;
 }
-.news-text{
-text-align: justify;
+.news-text {
+    text-align: justify;
 }
 @media screen and (min-width: 769px) {
-
 }
 @media screen and (min-width: 376px) and (max-width: 768px) {
-
 }
 
 @media screen and (max-width: 375px) {
-
 }
 /* //works */
 
 /* news */
 
-
 /* contact */
-
 
 /* footer */
 #footer {
@@ -221,8 +232,40 @@ text-align: justify;
     font-size: 0.625rem;
     line-height: 1;
 }
-
 /* footer */
+
+/* scrollTop */
+.scrollTop {
+    /* display: none; */
+    position: fixed;
+    right: 0px;
+    bottom: -50px;
+    background-color: #be3f48;
+    padding: 10px 20px;
+    opacity: 0;
+    transition: all 0.4s ease-in-out 0s;
+    margin-right: calc((100vw - min(calc(100vw - 60px), 840px)) / 2);
+}
+.scrollTop a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+}
+.scrollTop:not(.is-clicked):hover a {
+    color: #0dc0c0;
+    transition: color 0.3s;
+}
+/* スクロール中はこの色を維持 できてない*/
+.scrollTop.is-active a {
+    color: #0dc0c0 !important;
+}
+@media screen and (max-width: 375px) {
+    .scrollTop {
+        margin-right: 0;
+        right: 20px;
+    }
+}
+/* //scrollTop */
 
 /* 左上に画面サイズを表示 */
 @property --_w {
@@ -250,10 +293,11 @@ body::before {
     position: fixed;
     top: 10px;
     left: 10px;
-    background-color: white;
+    background-color: #fff;
     padding: 5px;
-    border: 1px solid black;
-    z-index: 9999;
+    border: 1px solid #000;
+    z-index: -9999;
+    opacity: 0; /** 非表示 **/
 }
 /* //左上に画面サイズを表示 */
 

@@ -70,16 +70,17 @@ img {
     width: 100%;
     font-size: 1.75rem;
     font-weight: bold;
-    margin-top: 100px;
+    margin-top: 80px;
     margin-bottom: 50px;
+    padding-top: 20px;
     text-align: center;
     line-height: 1;
 }
 .section-title.second {
     margin-top: 0px;
+    padding-top: 0;
 }
 .section-title a {
-    color: #000;
     text-decoration: none;
 }
 .section-title a:hover {
@@ -87,7 +88,9 @@ img {
     transition: 0.3s;
 }
 a,
+.scrollTop,
 label {
+    color: #333;
     cursor: pointer;
     /* transition: all 0.3s; */
 }
@@ -138,11 +141,16 @@ label {
     font-size: 0.875rem;
     margin-left: 30px;
 }
+#header li .about,
+#header li .works,
+#header li .news,
+#header li .contact {
+    color: #0dc0c0;
+}
 #header li img {
     width: 20px;
 }
 #header a {
-    color: #333;
     text-decoration: none;
 }
 #header a:hover {
@@ -175,6 +183,24 @@ label {
     #header li img {
         width: 15px;
     }
+}
+ul:has(li a[href*='about']:hover) li span.works,
+ul:has(li a[href*='about']:hover) li span.news,
+ul:has(li a[href*='about']:hover) li span.contact,
+
+ul:has(li a[href*='works']:hover) li span.about,
+ul:has(li a[href*='works']:hover) li span.news,
+ul:has(li a[href*='works']:hover) li span.contact,
+
+ul:has(li a[href*='news']:hover) li span.about,
+ul:has(li a[href*='news']:hover) li span.works,
+ul:has(li a[href*='news']:hover) li span.contact,
+
+ul:has(li a[href*='contact']:hover) li span.about,
+ul:has(li a[href*='contact']:hover) li span.works,
+ul:has(li a[href*='contact']:hover) li span.news {
+    color: #333 !important; /* 変えたい色を指定 */
+    transition: color 0.3s;
 }
 
 /* //header */
@@ -325,12 +351,13 @@ label {
     margin: 0;
 }
 #contact dd {
-    background-color: #f88;
+    /* background-color: #f88; */
     width: var(--news-dd-width);
     max-width: var(--news-dd);
     margin: 0 0 10px 0;
 }
-input, textarea {
+input,
+textarea {
     caret-color: auto;
 }
 #contact dd:last-child {
@@ -390,8 +417,43 @@ input, textarea {
     font-size: 0.625rem;
     line-height: 1;
 }
-
 /* footer */
+
+#footer {
+    /* background-color: #f00; */
+}
+/* scrollTop */
+.scrollTop {
+    /* display: none; */
+    position: fixed;
+    right: 0px;
+    bottom: -50px;
+    background-color: #be3f48;
+    padding: 10px 20px;
+    opacity: 0;
+    transition: all 0.4s ease-in-out 0s;
+    margin-right: calc((100vw - min(calc(100vw - 60px), 840px)) / 2);
+}
+.scrollTop a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+}
+.scrollTop:not(.is-clicked):hover a {
+    color: #0dc0c0;
+    transition: color 0.3s;
+}
+/* スクロール中はこの色を維持 できてない*/
+.scrollTop.is-active a {
+    color: #0dc0c0 !important;
+}
+@media screen and (max-width: 375px) {
+    .scrollTop {
+        margin-right: 0;
+        right: 20px;
+    }
+}
+/* //scrollTop */
 
 /* 左上に画面サイズを表示 */
 @property --_w {
@@ -419,44 +481,15 @@ body::before {
     position: fixed;
     top: 10px;
     left: 10px;
-    background-color: white;
+    background-color: #fff;
     padding: 5px;
-    border: 1px solid black;
-    z-index: 9999;
+    border: 1px solid #000;
+    z-index: -9999;
+    opacity: 0; /** 非表示 **/
 }
 /* //左上に画面サイズを表示 */
 
 /* //news */
-
-/*
-<section id="news" class="wrapper">
-    <h2 class="section-title"><a href="#header">News</a></h2>
-    <dl>
-        <dt>2020.XX.XX</dt>
-        <dd>デザイン雑誌「ＸＸＸＸＸＸ Vol.11』に掲載していただきました。</dd>
-        <dt>2020.XX.XX</dt>
-        <dd>ＸＸ月ＸＸ日から写真集「ＸＸＸＸＸＸＸ」の販売を開始します。</dd>
-        <dt>2019.XX.XX</dt>
-        <dd>【イベント開催のお知らせ】テキストテキストテキストテキストテキストテキストテキスト</dd>
-        <dt>2019.XX.XX</dt>
-        <dd>デザイン雑誌「ＸＸＸＸＸＸ Vol.10』に掲載していただきました。</dd>
-        <dt>2019.XX.XX</dt>
-        <dd>【個展開催のお知らせ】テキストテキストテキストテキストテキストテキストテキスト</dd>
-    </dl>
-</section>
-*/
-
-/* index */
-
-/* footer */
-#footer {
-    /* background-color: #f00; */
-    /* padding: 15px 0; */
-}
-/* //footer */
-
-@media screen and (max-width: 768px) {
-}
 
 /*
 last-child と last-of-type の違いは？
