@@ -286,7 +286,6 @@ ul:has(li a[href*='contact']:hover) li span.news {
 #news dl a {
     display: flex;
     flex-wrap: wrap;
-    border-top: 1px solid #c8c8c8;
     --news-dt: 16%;
     --news-dd: calc(100% - var(--news-dt));
     --news-dt-width: max(125px, var(--news-dt));
@@ -296,19 +295,22 @@ ul:has(li a[href*='contact']:hover) li span.news {
     display: flex;
     width: 100%;
     text-decoration: none;
+    border-bottom: 1px solid #c8c8c8;
+}
+#news dl a:first-child{
+        border-top: 1px solid #c8c8c8;
+
 }
 #news dt {
     /* background-color: #88f; */
     width: var(--news-dt-width);
     min-width: 125px;
-    border-bottom: 1px solid #c8c8c8;
     padding: 15px;
 }
 #news dd {
     /* background-color: #f88; */
     width: var(--news-dd-width);
     max-width: var(--news-dd);
-    border-bottom: 1px solid #c8c8c8;
     text-align: justify;
     padding: 15px;
 }
