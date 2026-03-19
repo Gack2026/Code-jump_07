@@ -338,18 +338,18 @@ ul:has(li a[href*='contact']:hover) li span.news {
     flex-wrap: wrap;
     margin: 0;
 
-    --news-dt: 15%;
+    --news-dt: 12%; /* 15%から変更 */
     --news-dd: calc(100% - var(--news-dt));
-    --news-dt-width: max(101px, var(--news-dt));
+    --news-dt-width: max(90px, var(--news-dt)); /* 100pxから90pxに変更 */
     --news-dd-width: calc(100% - var(--news-dt-width));
 }
 #contact dt {
     /* background-color: #88f; */
     width: var(--news-dt-width);
-    min-width: 101px;
+    min-width: 90px; /* 100pxから90pxに変更 */
     line-height: 1;
     text-align: left;
-    padding: 10px 10px 10px 15px;
+    padding: 10px 10px 10px 0px;
     margin: 0;
 }
 #contact dd {
